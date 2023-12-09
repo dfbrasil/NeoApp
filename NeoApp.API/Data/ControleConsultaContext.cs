@@ -24,16 +24,15 @@ public partial class ControleConsultaContext : DbContext
     public virtual DbSet<Paciente> Paciente { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=(local);Initial Catalog=ControleConsulta;Integrated Security=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Consulta>(entity =>
         {
-            entity.HasOne(d => d.IdMedicoNavigation).WithMany(p => p.Consulta).HasConstraintName("FK_Consulta_Medico");
+            entity.HasOne(d => d.IdMedicoNavigation).WithMany(p => p.Consulta).HasForeignKey(d => d.IdMedico).HasConstraintName("FK_Consulta_Medico");
 
-            entity.HasOne(d => d.IdPacienteNavigation).WithMany(p => p.Consulta).HasConstraintName("FK_Consulta_Paciente");
+            entity.HasOne(d => d.IdPacienteNavigation).WithMany(p => p.Consulta).HasForeignKey(d => d.IdPaciente).HasConstraintName("FK_Consulta_Paciente");
         });
 
         OnModelCreatingPartial(modelBuilder);
