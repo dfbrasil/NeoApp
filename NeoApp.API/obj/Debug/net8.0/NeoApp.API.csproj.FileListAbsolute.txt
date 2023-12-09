@@ -1,5 +1,7 @@
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\appsettings.json
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\efpt.config.json
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\runtimeconfig.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.exe
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.deps.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.runtimeconfig.json
