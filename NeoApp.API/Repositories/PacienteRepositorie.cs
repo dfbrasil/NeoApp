@@ -23,6 +23,11 @@ namespace NeoApp.API.Repositories
         }
         public async Task<Paciente> AdicionarPaciente(Paciente paciente)
         {
+            if (paciente == null)
+            {
+                throw new ArgumentNullException(nameof(paciente), "O objeto Paciente não pode ser nulo.");
+            }
+
             await _dbContext.Paciente.AddAsync(paciente);
             await _dbContext.SaveChangesAsync();
 
@@ -34,8 +39,9 @@ namespace NeoApp.API.Repositories
             Paciente pacientePorId = await BuscarPorId(id);
             if (pacientePorId == null)
             {
-                throw new Exception($"Paciente para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Paciente para o ID: {id} não foi encontrado no banco de dados.");
             }
+
             pacientePorId.NomePaciente = paciente.NomePaciente;
 
             _dbContext.Paciente.Update(pacientePorId);
@@ -49,7 +55,7 @@ namespace NeoApp.API.Repositories
             Paciente pacientePorId = await BuscarPorId(id);
             if (pacientePorId == null)
             {
-                throw new Exception($"Paciente para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Paciente para o ID: {id} não foi encontrado no banco de dados.");
             }
 
             _dbContext.Paciente.Remove(pacientePorId);
@@ -65,6 +71,11 @@ namespace NeoApp.API.Repositories
             var paciente = await _dbContext.Paciente
                 .Where(x => x.NomePaciente == userName && x.Password == password)
                 .FirstOrDefaultAsync();
+
+            if (paciente == null)
+            {
+                throw new InvalidOperationException("Credenciais de paciente inválidas.");
+            }
 
             return paciente;
         }

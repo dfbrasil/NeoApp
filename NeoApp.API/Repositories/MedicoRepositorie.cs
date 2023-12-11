@@ -23,10 +23,15 @@ namespace NeoApp.API.Repositories
         }
         public async Task<Medico> AdicionarMedico(Medico medico)
         {
+            if (medico == null)
+            {
+                throw new ArgumentNullException(nameof(medico), "O objeto Médico não pode ser nulo.");
+            }
+
             await _dbContext.Medico.AddAsync(medico);
             await _dbContext.SaveChangesAsync();
 
-            return medico ;
+            return medico;
         }
 
         public async Task<Medico> AtualizarMedico(Medico medico, int id)
@@ -34,8 +39,9 @@ namespace NeoApp.API.Repositories
             Medico medicoPorId = await BuscarPorId(id);
             if (medicoPorId == null)
             {
-                throw new Exception($"Médico para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Médico para o ID: {id} não foi encontrado no banco de dados.");
             }
+
             medicoPorId.NomeMedico = medico.NomeMedico;
 
             _dbContext.Medico.Update(medicoPorId);
@@ -49,7 +55,7 @@ namespace NeoApp.API.Repositories
             Medico medicoPorId = await BuscarPorId(id);
             if (medicoPorId == null)
             {
-                throw new Exception($"Médico para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Médico para o ID: {id} não foi encontrado no banco de dados.");
             }
 
             _dbContext.Medico.Remove(medicoPorId);
@@ -64,6 +70,11 @@ namespace NeoApp.API.Repositories
             var medico = await _dbContext.Medico
                 .Where(x => x.NomeMedico == userName && x.Password == password)
                 .FirstOrDefaultAsync();
+
+            if (medico == null)
+            {
+                throw new InvalidOperationException("Credenciais de médico inválidas.");
+            }
 
             return medico;
         }

@@ -13,6 +13,7 @@ namespace NeoApp.API.Controllers
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoRepositorie _medicoRepositorie;
+
         public MedicoController(IMedicoRepositorie medicoRepositorie)
         {
             _medicoRepositorie = medicoRepositorie;
@@ -31,6 +32,11 @@ namespace NeoApp.API.Controllers
         public async Task<ActionResult<Medico>> BuscarPorId(int id)
         {
             Medico medico = await _medicoRepositorie.BuscarPorId(id);
+            if (medico == null)
+            {
+                return NotFound($"Médico com ID {id} não encontrado.");
+            }
+
             return Ok(medico);
         }
 
@@ -38,17 +44,32 @@ namespace NeoApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Medico>> Cadastrar([FromBody] Medico medicoModel)
         {
-            Medico medico = await _medicoRepositorie.AdicionarMedico(medicoModel);
-            return Ok(medico);
+            if (ModelState.IsValid)
+            {
+                Medico medico = await _medicoRepositorie.AdicionarMedico(medicoModel);
+                return Ok(medico);
+            }
+
+            return BadRequest(ModelState);
         }
 
         [Authorize(Roles = "Medico")]
         [HttpPut("{id}")]
         public async Task<ActionResult<Medico>> Atualizar([FromBody] Medico medicoModel, int id)
         {
-            medicoModel.Id = id;
-            Medico medico = await _medicoRepositorie.AtualizarMedico(medicoModel, id);
-            return Ok(medico);
+            if (ModelState.IsValid)
+            {
+                medicoModel.Id = id;
+                Medico medico = await _medicoRepositorie.AtualizarMedico(medicoModel, id);
+                if (medico == null)
+                {
+                    return NotFound($"Médico com ID {id} não encontrado.");
+                }
+
+                return Ok(medico);
+            }
+
+            return BadRequest(ModelState);
         }
 
         [Authorize(Roles = "Medico")]
@@ -58,7 +79,7 @@ namespace NeoApp.API.Controllers
             Medico medicoPorId = await _medicoRepositorie.BuscarPorId(id);
             if (medicoPorId == null)
             {
-                throw new Exception($"Médico para o ID: {id} não foi encontrado no banco de dados.");
+                return NotFound($"Médico com ID {id} não encontrado.");
             }
 
             await _medicoRepositorie.DeletarMedico(id);

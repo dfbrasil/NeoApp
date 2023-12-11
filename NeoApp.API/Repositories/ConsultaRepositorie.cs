@@ -28,6 +28,11 @@ namespace NeoApp.API.Repositories
         }
         public async Task<Consulta> AdicionarConsulta(Consulta consulta)
         {
+            if (consulta == null)
+            {
+                throw new ArgumentNullException(nameof(consulta), "O objeto Consulta não pode ser nulo.");
+            }
+
             await _dbContext.Consulta.AddAsync(consulta);
             await _dbContext.SaveChangesAsync();
 
@@ -39,8 +44,9 @@ namespace NeoApp.API.Repositories
             Consulta consultaPorId = await BuscarPorId(id);
             if (consultaPorId == null)
             {
-                throw new Exception($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
             }
+
             consultaPorId.DataConsulta = consulta.DataConsulta;
             consultaPorId.IdPaciente = consulta.IdPaciente;
             consultaPorId.IdMedico = consulta.IdMedico;
@@ -56,7 +62,7 @@ namespace NeoApp.API.Repositories
             Consulta consultaPorId = await BuscarPorId(id);
             if (consultaPorId == null)
             {
-                throw new Exception($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
+                throw new InvalidOperationException($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
             }
 
             _dbContext.Consulta.Remove(consultaPorId);
@@ -64,7 +70,5 @@ namespace NeoApp.API.Repositories
 
             return true;
         }
-
-       
     }
 }

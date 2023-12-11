@@ -27,8 +27,10 @@ namespace NeoApp.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login([FromBody] LoginRequest request)
         {
-            // Lógica para validar as credenciais do usuário (consulta ao banco de dados, etc.)
-            // Se as credenciais forem válidas, gere um token JWT
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             Paciente paciente = await _pacienteRepositorie.VerificarCredenciaisPaciente(request.UserName, request.Password);
             Medico medico = await _medicoRepositorie.VerificarCredenciaisMedico(request.UserName, request.Password);
@@ -57,8 +59,7 @@ namespace NeoApp.API.Controllers
             var claims = new List<Claim>
         {
         new Claim(ClaimTypes.Name, medico.NomeMedico),
-        new Claim(ClaimTypes.Role, "Medico"), // Adicione o papel do usuário (por exemplo, "Paciente", "Medico") aqui
-        // Adicione mais reivindicações conforme necessário
+        new Claim(ClaimTypes.Role, "Medico"),
         };
 
             var token = new JwtSecurityToken(
@@ -80,8 +81,7 @@ namespace NeoApp.API.Controllers
             var claims = new List<Claim>
     {
         new Claim(ClaimTypes.Name, paciente.NomePaciente),
-        new Claim(ClaimTypes.Role, "Paciente"), // Adicione o papel do usuário (por exemplo, "Paciente", "Medico") aqui
-        // Adicione mais reivindicações conforme necessário
+        new Claim(ClaimTypes.Role, "Paciente"),
     };
 
             var token = new JwtSecurityToken(

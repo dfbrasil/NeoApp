@@ -12,10 +12,12 @@ namespace NeoApp.API.Controllers
     public class ConsultaController : ControllerBase
     {
         private readonly IConsultaRepositorie _consultaRepositorie;
+
         public ConsultaController(IConsultaRepositorie consultaRepositorie)
         {
             _consultaRepositorie = consultaRepositorie;
         }
+
         [Authorize(Roles = "Medico, Paciente")]
         [HttpGet]
         public async Task<ActionResult<List<Consulta>>> ListarTodas()
@@ -36,6 +38,11 @@ namespace NeoApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Consulta>> Cadastrar([FromBody] Consulta consultaModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Consulta consulta = await _consultaRepositorie.AdicionarConsulta(consultaModel);
             return Ok(consulta);
         }
@@ -44,6 +51,11 @@ namespace NeoApp.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Consulta>> Atualizar(Consulta consultaModel, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             consultaModel.Id = id;
             Consulta consulta = await _consultaRepositorie.AtualizarConsulta(consultaModel, id);
             return Ok(consulta);
