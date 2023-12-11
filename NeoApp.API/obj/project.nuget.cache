@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TUDSsa3vk0h4QHIKedW0ro3TTV3O+f/5H2p4qMFSpcUMuTYoJSsZ7p1zKHqaRN+3C9vw4fSjLY/ApO5dq2nBLQ==",
+  "dgSpecHash": "xb259cD0Pb2fOCjEnq4fBzp11FPz6uTxC0epDn0OpWzht1259/bDrm9MSwboDGF985E2ZhUBki76qLfvDfe0hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel Brasil\\source\\repos\\NeoApp\\NeoApp.API\\NeoApp.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Daniel Brasil\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Daniel Brasil\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Daniel Brasil\\.nuget\\packages\\dapper\\2.1.24\\dapper.2.1.24.nupkg.sha512",
     "C:\\Users\\Daniel Brasil\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Daniel Brasil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\Daniel Brasil\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.0\\microsoft.aspnetcore.jsonpatch.8.0.0.nupkg.sha512",

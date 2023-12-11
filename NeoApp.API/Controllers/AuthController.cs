@@ -88,7 +88,7 @@ namespace NeoApp.API.Controllers
                 _configuration["Jwt:Issuer"],
                 _configuration["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpirationInMinutes"])),
+                expires: DateTime.Now.AddMinutes(1000),
                 signingCredentials: credentials
             );
 
