@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json; // Importe esta namespace
+
 
 namespace NeoApp.API.Models;
 
@@ -20,5 +22,6 @@ public partial class Paciente
     public string NomePaciente { get; set; }
 
     [InverseProperty("IdPacienteNavigation")]
+    [JsonIgnore]
     public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
 }

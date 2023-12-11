@@ -13,12 +13,18 @@ namespace NeoApp.API.Repositories
         }
         public async Task<Consulta> BuscarPorId(int id)
         {
-            return await _dbContext.Consulta.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Consulta
+                .Include(x => x.IdMedicoNavigation)
+                .Include(x => x.IdPacienteNavigation)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<Consulta>> BuscarTodosConsultas()
+        public async Task<List<Consulta>> BuscarTodasConsultas()
         {
-            return await _dbContext.Consulta.ToListAsync();
+            return await _dbContext.Consulta
+                .Include(x => x.IdMedicoNavigation)
+                .Include(x => x.IdPacienteNavigation)
+                .ToListAsync();
         }
         public async Task<Consulta> AdicionarConsulta(Consulta consulta)
         {
@@ -36,6 +42,8 @@ namespace NeoApp.API.Repositories
                 throw new Exception($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
             }
             consultaPorId.DataConsulta = consulta.DataConsulta;
+            consultaPorId.IdPaciente = consulta.IdPaciente;
+            consultaPorId.IdMedico = consulta.IdMedico;
 
             _dbContext.Consulta.Update(consultaPorId);
             await _dbContext.SaveChangesAsync();
@@ -51,7 +59,7 @@ namespace NeoApp.API.Repositories
                 throw new Exception($"Consulta para o ID: {id} não foi encontrado no banco de dados.");
             }
 
-            _dbContext.Consulta.Update(consultaPorId);
+            _dbContext.Consulta.Remove(consultaPorId);
             await _dbContext.SaveChangesAsync();
 
             return true;
