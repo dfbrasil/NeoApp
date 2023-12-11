@@ -16,6 +16,7 @@ builder.Services.AddDbContext<ControleConsultaContext>(
 );
 
 builder.Services.AddScoped<IConsultaRepositorie, ConsultaRepositorie>();
+builder.Services.AddScoped<IMedicoRepositorie, MedicoRepositorie>();
 builder.Services.AddScoped<IPacienteRepositorie, PacienteRepositorie>();
 
 var app = builder.Build();
