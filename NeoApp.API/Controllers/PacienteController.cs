@@ -10,12 +10,12 @@ namespace NeoApp.API.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly IPacienteRepositorie _pacienteRepositorie;
-        public PacienteController(IPacienteRepositorie pacienteRepositorie) 
+        public PacienteController(IPacienteRepositorie pacienteRepositorie)
         {
             _pacienteRepositorie = pacienteRepositorie;
         }
         [HttpGet]
-        public async Task<ActionResult <List<Paciente>>> BuscaTodosPacientes()
+        public async Task<ActionResult<List<Paciente>>> BuscaTodosPacientes()
         {
             List<Paciente> pacientes = await _pacienteRepositorie.BuscarTodosPacientes();
             return Ok(pacientes);
@@ -33,6 +33,21 @@ namespace NeoApp.API.Controllers
         {
             Paciente paciente = await _pacienteRepositorie.AdicionarPaciente(pacienteModel);
             return Ok(paciente);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Paciente>> Atualizar([FromBody] Paciente pacienteModel, int id)
+        {
+            pacienteModel.Id = id;
+            Paciente paciente = await _pacienteRepositorie.AtualizarPaciente(pacienteModel, id);
+            return Ok(paciente);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Paciente>> Apagar(int id)
+        {
+            bool apagado= await _pacienteRepositorie.DeletarPaciente(id);
+            return Ok(apagado);
         }
     }
 }
