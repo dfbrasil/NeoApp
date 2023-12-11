@@ -21,6 +21,9 @@ public partial class Paciente
     [Unicode(false)]
     public string NomePaciente { get; set; }
 
+    [Column("password")]
+    public string Password { get; set; }
+
     [InverseProperty("IdPacienteNavigation")]
     [JsonIgnore]
     public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
