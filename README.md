@@ -45,7 +45,6 @@ Se você deseja contribuir para o projeto NeoApp.API, siga estas etapas:
 
 Certifique-se de ter o .NET Core SDK instalado em sua máquina. Para executar o projeto, utilize o comando:
 
-```bash
 dotnet run
 
 Acesse a documentação da API no Swagger através do URL: http://localhost:5000/swagger.
