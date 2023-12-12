@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace NeoApp.API.Repositories
 {

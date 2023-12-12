@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Services;
-using System.Numerics;
 
 namespace NeoApp.API.Controllers
 {

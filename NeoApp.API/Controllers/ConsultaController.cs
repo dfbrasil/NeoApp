@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace NeoApp.API.Controllers
 {

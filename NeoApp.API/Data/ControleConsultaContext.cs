@@ -1,6 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace NeoApp.API.Models
