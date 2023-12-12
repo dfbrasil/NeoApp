@@ -53,5 +53,17 @@ namespace NeoApp.API.Models
                 return IdPaciente.HasValue && IdMedico.HasValue;
             }
         }
+        public int? CalcularDiaJuliano()
+        {
+            if (DataConsulta.HasValue)
+            {
+                var diaJuliano = DataConsulta.Value.Day;
+                return diaJuliano;
+            }
+            else
+            {
+                return null; // Ou outro valor padrão, dependendo dos requisitos.
+            }
+        }
     }
 }

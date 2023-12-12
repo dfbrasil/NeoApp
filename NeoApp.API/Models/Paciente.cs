@@ -25,5 +25,10 @@ namespace NeoApp.API.Models
         [InverseProperty("IdPacienteNavigation")]
         [JsonIgnore]
         public virtual ICollection<Consulta> Consulta { get; set; } = new List<Consulta>();
+
+        public bool ValidarNome()
+        {
+            return !string.IsNullOrWhiteSpace(NomePaciente) && NomePaciente.Length > 1;
+        }
     }
 }
