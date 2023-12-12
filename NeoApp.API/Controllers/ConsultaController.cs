@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NeoApp.API.Controllers
 {
@@ -10,11 +11,14 @@ namespace NeoApp.API.Controllers
     public class ConsultaController : ControllerBase
     {
         private readonly IConsultaRepositorie _consultaRepositorie;
+
         public ConsultaController(IConsultaRepositorie consultaRepositorie)
         {
             _consultaRepositorie = consultaRepositorie;
         }
+
         [HttpGet]
+        [Authorize(Roles = "Paciente,Medico")] // Autorizado para Pacientes e Medicos
         public async Task<ActionResult<List<Consulta>>> ListarTodas()
         {
             List<Consulta> consultas = await _consultaRepositorie.BuscarTodasConsultas();
@@ -22,6 +26,7 @@ namespace NeoApp.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Paciente,Medico")] // Autorizado para Pacientes e Medicos
         public async Task<ActionResult<Consulta>> BuscarPorId(int id)
         {
             Consulta consulta = await _consultaRepositorie.BuscarPorId(id);
@@ -29,6 +34,7 @@ namespace NeoApp.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
         public async Task<ActionResult<Consulta>> Cadastrar([FromBody] Consulta consultaModel)
         {
             Consulta consulta = await _consultaRepositorie.AdicionarConsulta(consultaModel);
@@ -36,6 +42,7 @@ namespace NeoApp.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
         public async Task<ActionResult<Consulta>> Atualizar(Consulta consultaModel, int id)
         {
             consultaModel.Id = id;
@@ -44,6 +51,7 @@ namespace NeoApp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
         public async Task<ActionResult<Consulta>> Apagar(int id)
         {
             bool apagado = await _consultaRepositorie.DeletarConsulta(id);
