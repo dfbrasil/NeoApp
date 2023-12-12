@@ -137,3 +137,8 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\refint\Ne
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\NeoApp.API.pdb
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\NeoApp.API.genruntimeconfig.cache
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\ref\NeoApp.API.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -57,5 +57,15 @@ namespace NeoApp.API.Repositories
 
             return true;
         }
+        public async Task<Medico> VerificarCredenciaisMedico(string userName, string password)
+        {
+            // Lógica para verificar as credenciais do médico no banco de dados ou em outro local
+            // Retorna true se as credenciais são válidas, false caso contrário
+            var medico = await _dbContext.Medico
+                .Where(x => x.NomeMedico == userName && x.Password == password)
+                .FirstOrDefaultAsync();
+
+            return medico;
+        }
     }
 }

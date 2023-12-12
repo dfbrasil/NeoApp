@@ -9,5 +9,6 @@ namespace NeoApp.API.Repositories.Interfaces
         Task<Paciente> AdicionarPaciente(Paciente paciente);
         Task<Paciente> AtualizarPaciente(Paciente paciente, int id);
         Task<bool> DeletarPaciente(int id);
+        Task<Paciente> VerificarCredenciaisPaciente(string userName, string password);
     }
 }

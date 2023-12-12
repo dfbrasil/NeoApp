@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeoApp.API.Models;
 
@@ -11,9 +12,11 @@ using NeoApp.API.Models;
 namespace NeoApp.API.Migrations
 {
     [DbContext(typeof(ControleConsultaContext))]
-    partial class ControleConsultaContextModelSnapshot : ModelSnapshot
+    [Migration("20231211035140_VinculoConsultaPacienteMedico")]
+    partial class VinculoConsultaPacienteMedico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,10 +70,6 @@ namespace NeoApp.API.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("nome_medico");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("password");
-
                     b.HasKey("Id");
 
                     b.ToTable("Medico");
@@ -90,10 +89,6 @@ namespace NeoApp.API.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("nome_paciente");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("password");
 
                     b.HasKey("Id");
 
