@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
 
 namespace NeoApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PacienteController : ControllerBase
@@ -27,7 +29,6 @@ namespace NeoApp.API.Controllers
             Paciente paciente = await _pacienteRepositorie.BuscarPorId(id);
             return Ok(paciente);
         }
-
         [HttpPost]
         public async Task<ActionResult<Paciente>> Cadastrar([FromBody] Paciente pacienteModel)
         {
