@@ -65,6 +65,9 @@ namespace NeoApp.API.Repositories
             return true;
         }
 
-       
+        public async Task<bool> VerificarExistenciaConsulta(int consultaId)
+        {
+            return await _dbContext.Consulta.AnyAsync(c => c.Id == consultaId);
+        }
     }
 }

@@ -40,17 +40,13 @@ builder.Services.AddSwaggerGen(c =>
             Scheme = "oauth2",
             Name = "Bearer",
             In = ParameterLocation.Header,
-
         },
         new List<string>()
         }
     });
-
-
 });
-builder.Services.AddDbContext<ControleConsultaContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings:DataBase"))
-);
+builder.Services.AddDbContext<ControleConsultaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
 builder.Services.AddScoped<IConsultaRepositorie, ConsultaRepositorie>();
 builder.Services.AddScoped<IMedicoRepositorie, MedicoRepositorie>();

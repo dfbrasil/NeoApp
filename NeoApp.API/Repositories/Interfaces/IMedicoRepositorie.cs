@@ -9,5 +9,6 @@ namespace NeoApp.API.Repositories.Interfaces
         Task<Medico> AdicionarMedico(Medico medico);
         Task<Medico> AtualizarMedico(Medico medico, int id);
         Task<bool> DeletarMedico(int id);
+        Task<bool> VerificarExistenciaMedico(int medicoId);
     }
 }

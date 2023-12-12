@@ -12,6 +12,11 @@ namespace NeoApp.API.Controllers
         [HttpPost]
         public IActionResult Auth(string username, string password, string userType)
         {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(userType))
+            {
+                return BadRequest("Parâmetros de entrada inválidos");
+            }
+
             if (userType == "Paciente" && username == "paciente" && password == "paciente123")
             {
                 var paciente = new Paciente();
@@ -25,7 +30,7 @@ namespace NeoApp.API.Controllers
                 return Ok(token);
             }
 
-            return BadRequest("username or password invalid");
+            return BadRequest("Username ou Senha inválidos");
         }
     }
 }

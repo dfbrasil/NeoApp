@@ -12,10 +12,12 @@ namespace NeoApp.API.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly IPacienteRepositorie _pacienteRepositorie;
+
         public PacienteController(IPacienteRepositorie pacienteRepositorie)
         {
             _pacienteRepositorie = pacienteRepositorie;
         }
+
         [HttpGet]
         public async Task<ActionResult<List<Paciente>>> BuscaTodosPacientes()
         {
@@ -26,12 +28,31 @@ namespace NeoApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Paciente>> BuscarPorId(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID inválido.");
+            }
+
             Paciente paciente = await _pacienteRepositorie.BuscarPorId(id);
+
+            if (paciente == null)
+            {
+                return NotFound("Paciente não encontrado.");
+            }
+
             return Ok(paciente);
         }
+
         [HttpPost]
         public async Task<ActionResult<Paciente>> Cadastrar([FromBody] Paciente pacienteModel)
         {
+            if (pacienteModel == null)
+            {
+                return BadRequest("Objeto Paciente não pode ser nulo.");
+            }
+
+            // Adicione mais validações conforme necessário, por exemplo, para campos obrigatórios.
+
             Paciente paciente = await _pacienteRepositorie.AdicionarPaciente(pacienteModel);
             return Ok(paciente);
         }
@@ -39,7 +60,18 @@ namespace NeoApp.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Paciente>> Atualizar([FromBody] Paciente pacienteModel, int id)
         {
-            pacienteModel.Id = id;
+            if (pacienteModel == null || id <= 0 || id != pacienteModel.Id)
+            {
+                return BadRequest("ID na URL não corresponde ao ID no objeto Paciente.");
+            }
+
+            // Verificar se o paciente existe antes de atualizar
+            if (!await _pacienteRepositorie.VerificarExistenciaPaciente(id))
+            {
+                return NotFound("Paciente não encontrado.");
+            }
+
+            // Continue com a lógica de atualização
             Paciente paciente = await _pacienteRepositorie.AtualizarPaciente(pacienteModel, id);
             return Ok(paciente);
         }
@@ -47,7 +79,18 @@ namespace NeoApp.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Paciente>> Apagar(int id)
         {
-            bool apagado= await _pacienteRepositorie.DeletarPaciente(id);
+            if (id <= 0)
+            {
+                return BadRequest("ID inválido.");
+            }
+
+            // Verificar se o paciente existe antes de apagar
+            if (!await _pacienteRepositorie.VerificarExistenciaPaciente(id))
+            {
+                return NotFound("Paciente não encontrado.");
+            }
+
+            bool apagado = await _pacienteRepositorie.DeletarPaciente(id);
             return Ok(apagado);
         }
     }

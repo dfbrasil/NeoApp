@@ -1,17 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
-using System.Data;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NeoApp.API.Repositories
 {
     public class PacienteRepositorie : IPacienteRepositorie
     {
         private readonly ControleConsultaContext _dbContext;
-        public PacienteRepositorie(ControleConsultaContext controleConsultaContext) 
+
+        public PacienteRepositorie(ControleConsultaContext controleConsultaContext)
         {
             _dbContext = controleConsultaContext;
         }
+
         public async Task<Paciente> BuscarPorId(int id)
         {
             return await _dbContext.Paciente.FirstOrDefaultAsync(x => x.Id == id);
@@ -21,6 +25,7 @@ namespace NeoApp.API.Repositories
         {
             return await _dbContext.Paciente.ToListAsync();
         }
+
         public async Task<Paciente> AdicionarPaciente(Paciente paciente)
         {
             await _dbContext.Paciente.AddAsync(paciente);
@@ -36,6 +41,7 @@ namespace NeoApp.API.Repositories
             {
                 throw new Exception($"Paciente para o ID: {id} não foi encontrado no banco de dados.");
             }
+
             pacientePorId.NomePaciente = paciente.NomePaciente;
 
             _dbContext.Paciente.Update(pacientePorId);
@@ -56,6 +62,11 @@ namespace NeoApp.API.Repositories
             await _dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<bool> VerificarExistenciaPaciente(int pacienteId)
+        {
+            return await _dbContext.Paciente.AnyAsync(p => p.Id == pacienteId);
         }
     }
 }

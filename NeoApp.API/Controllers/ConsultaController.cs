@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NeoApp.API.Controllers
 {
+    [Authorize(Roles = "Paciente")]
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultaController : ControllerBase
@@ -18,44 +22,114 @@ namespace NeoApp.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Paciente,Medico")] // Autorizado para Pacientes e Medicos
-        public async Task<ActionResult<List<Consulta>>> ListarTodas()
+        public async Task<ActionResult<List<Consulta>>> BuscaTodasConsultas()
         {
-            List<Consulta> consultas = await _consultaRepositorie.BuscarTodasConsultas();
-            return Ok(consultas);
+            try
+            {
+                List<Consulta> consultas = await _consultaRepositorie.BuscarTodasConsultas();
+                return Ok(consultas);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Paciente,Medico")] // Autorizado para Pacientes e Medicos
         public async Task<ActionResult<Consulta>> BuscarPorId(int id)
         {
-            Consulta consulta = await _consultaRepositorie.BuscarPorId(id);
-            return Ok(consulta);
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest("ID inválido.");
+                }
+
+                Consulta consulta = await _consultaRepositorie.BuscarPorId(id);
+
+                if (consulta == null)
+                {
+                    return NotFound("Consulta não encontrada.");
+                }
+
+                return Ok(consulta);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
-        public async Task<ActionResult<Consulta>> Cadastrar([FromBody] Consulta consultaModel)
+        public async Task<ActionResult<Consulta>> AdicionarConsulta([FromBody] Consulta consultaModel)
         {
-            Consulta consulta = await _consultaRepositorie.AdicionarConsulta(consultaModel);
-            return Ok(consulta);
+            try
+            {
+                if (consultaModel == null)
+                {
+                    return BadRequest("Objeto Consulta não pode ser nulo.");
+                }
+
+                // Adicione mais validações conforme necessário, por exemplo, para campos obrigatórios.
+
+                Consulta consulta = await _consultaRepositorie.AdicionarConsulta(consultaModel);
+                return Ok(consulta);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
-        public async Task<ActionResult<Consulta>> Atualizar(Consulta consultaModel, int id)
+        public async Task<ActionResult<Consulta>> AtualizarConsulta([FromBody] Consulta consultaModel, int id)
         {
-            consultaModel.Id = id;
-            Consulta consulta = await _consultaRepositorie.AtualizarConsulta(consultaModel, id);
-            return Ok(consulta);
+            try
+            {
+                if (consultaModel == null || id <= 0 || id != consultaModel.Id)
+                {
+                    return BadRequest("ID na URL não corresponde ao ID no objeto Consulta.");
+                }
+
+                // Verificar se a consulta existe antes de atualizar
+                if (!await _consultaRepositorie.VerificarExistenciaConsulta(id))
+                {
+                    return NotFound("Consulta não encontrada.");
+                }
+
+                // Continue com a lógica de atualização
+                Consulta consulta = await _consultaRepositorie.AtualizarConsulta(consultaModel, id);
+                return Ok(consulta);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Medico")] // Autorizado apenas para Medicos
-        public async Task<ActionResult<Consulta>> Apagar(int id)
+        public async Task<ActionResult<bool>> DeletarConsulta(int id)
         {
-            bool apagado = await _consultaRepositorie.DeletarConsulta(id);
-            return Ok(apagado);
+            try
+            {
+                if (id <= 0)
+                {
+                    return BadRequest("ID inválido.");
+                }
+
+                // Verificar se a consulta existe antes de apagar
+                if (!await _consultaRepositorie.VerificarExistenciaConsulta(id))
+                {
+                    return NotFound("Consulta não encontrada.");
+                }
+
+                bool apagado = await _consultaRepositorie.DeletarConsulta(id);
+                return Ok(apagado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
         }
     }
 }

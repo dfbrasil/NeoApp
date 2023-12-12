@@ -7,31 +7,51 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-
-namespace NeoApp.API.Models;
-
-public partial class Consulta
+namespace NeoApp.API.Models
 {
-    [Key]
-    [Column("id")]
-    public int Id { get; set; }
+    public partial class Consulta
+    {
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
 
-    [Column("idPaciente")]
-    public int? IdPaciente { get; set; }
+        [Column("idPaciente")]
+        public int? IdPaciente { get; set; }
 
-    [Column("idMedico")]
-    public int? IdMedico { get; set; }
+        [Column("idMedico")]
+        public int? IdMedico { get; set; }
 
-    [Column("dataConsulta", TypeName = "datetime")]
-    public DateTime? DataConsulta { get; set; }
+        [Column("dataConsulta", TypeName = "datetime")]
+        public DateTime? DataConsulta { get; set; }
 
-    [ForeignKey("IdMedico")]
-    [InverseProperty("Consulta")]
-    [JsonIgnore]
-    public virtual Medico IdMedicoNavigation { get; set; }
+        [ForeignKey("IdMedico")]
+        [InverseProperty("Consulta")]
+        [JsonIgnore]
+        public virtual Medico IdMedicoNavigation { get; set; }
 
-    [ForeignKey("IdPaciente")]
-    [InverseProperty("Consulta")]
-    [JsonIgnore]
-    public virtual Paciente IdPacienteNavigation { get; set; }
+        [ForeignKey("IdPaciente")]
+        [InverseProperty("Consulta")]
+        [JsonIgnore]
+        public virtual Paciente IdPacienteNavigation { get; set; }
+
+        [NotMapped]
+        public bool IsDataConsultaValida
+        {
+            get
+            {
+                // Por exemplo, você pode verificar se a data está no futuro ou dentro de um intervalo específico.
+                return DataConsulta.HasValue && DataConsulta.Value > DateTime.Now;
+            }
+        }
+
+        [NotMapped]
+        public bool IsConsultaCompleta
+        {
+            get
+            {
+                // Adicione aqui a lógica de validação para garantir que IdPaciente e IdMedico estejam preenchidos.
+                return IdPaciente.HasValue && IdMedico.HasValue;
+            }
+        }
+    }
 }
