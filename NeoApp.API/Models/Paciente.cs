@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
@@ -12,7 +12,7 @@ namespace NeoApp.API.Models
         public int Id { get; set; }
         public Paciente()
         {
-            Id = 0; // Ou qualquer valor padrão desejado
+            Id = 0;
         }
         [Column("nome_paciente")]
         [StringLength(50)]

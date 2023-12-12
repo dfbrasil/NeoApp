@@ -4,7 +4,7 @@ using NeoApp.API.Services;
 
 namespace NeoApp.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {

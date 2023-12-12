@@ -6,7 +6,7 @@ using NeoApp.API.Repositories.Interfaces;
 namespace NeoApp.API.Controllers
 {
     [Authorize(Roles = "Paciente")]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PacienteController : ControllerBase
     {
@@ -50,8 +50,6 @@ namespace NeoApp.API.Controllers
                 return BadRequest("Objeto Paciente não pode ser nulo.");
             }
 
-            // Adicione mais validações conforme necessário, por exemplo, para campos obrigatórios.
-
             Paciente paciente = await _pacienteRepositorie.AdicionarPaciente(pacienteModel);
             return Ok(paciente);
         }
@@ -64,13 +62,11 @@ namespace NeoApp.API.Controllers
                 return BadRequest("ID na URL não corresponde ao ID no objeto Paciente.");
             }
 
-            // Verificar se o paciente existe antes de atualizar
             if (!await _pacienteRepositorie.VerificarExistenciaPaciente(id))
             {
                 return NotFound("Paciente não encontrado.");
             }
 
-            // Continue com a lógica de atualização
             Paciente paciente = await _pacienteRepositorie.AtualizarPaciente(pacienteModel, id);
             return Ok(paciente);
         }
@@ -83,7 +79,6 @@ namespace NeoApp.API.Controllers
                 return BadRequest("ID inválido.");
             }
 
-            // Verificar se o paciente existe antes de apagar
             if (!await _pacienteRepositorie.VerificarExistenciaPaciente(id))
             {
                 return NotFound("Paciente não encontrado.");

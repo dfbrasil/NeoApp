@@ -10,6 +10,5 @@ namespace NeoApp.API.Repositories.Interfaces
         Task<Consulta> AtualizarConsulta(Consulta consulta, int id);
         Task<bool> DeletarConsulta(int id);
         Task<bool> VerificarExistenciaConsulta(int consultaId);
-
     }
 }

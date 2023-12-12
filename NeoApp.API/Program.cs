@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {
@@ -27,24 +26,34 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer"
     });
 
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
-    {
-        new OpenApiSecurityScheme
-        {
-        Reference = new OpenApiReference
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-            Type = ReferenceType.SecurityScheme,
-            Id = "Bearer"
-            },
-            Scheme = "oauth2",
-            Name = "Bearer",
-            In = ParameterLocation.Header,
-        },
-        new List<string>()
-        }
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        },
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+                    },
+                    new List<string>()
+                }
+            });
+
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "NeoApp.API",
+        Version = "v1",
+        Description = "Facilitamos a vida de pessoas e empresas com soluções inovadoras e focadas em usabilidade."
     });
+
+    c.OperationFilter<CustomOperationFilter>();
 });
+
 builder.Services.AddDbContext<ControleConsultaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
 
@@ -73,7 +82,6 @@ builder.Services.AddAuthentication(x =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

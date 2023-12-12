@@ -10,10 +10,9 @@ namespace NeoApp.API.Data.Map
         {
             builder.HasKey(x => x.Id);
 
-            // Validar a obrigatoriedade e o formato da data da consulta
             builder.Property(x => x.DataConsulta)
                 .IsRequired()
-                .HasColumnType("datetime"); // Ajuste o tipo conforme necessário
+                .HasColumnType("datetime");
 
             // Relacionamento com a entidade Médico
             builder.HasOne(x => x.IdMedicoNavigation)

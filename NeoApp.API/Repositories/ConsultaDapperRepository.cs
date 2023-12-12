@@ -20,7 +20,6 @@ namespace NeoApp.API.Repositories
             using IDbConnection dbConnection = new SqlConnection(_connectionString);
             dbConnection.Open();
 
-            // Utilize o Dapper para realizar a consulta
             string query = "SELECT * FROM Consulta";
 
             var consultas = dbConnection.Query<Consulta>(query, commandType: CommandType.Text);

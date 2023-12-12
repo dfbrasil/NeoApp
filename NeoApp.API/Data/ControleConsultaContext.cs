@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿
 using Microsoft.EntityFrameworkCore;
 
 namespace NeoApp.API.Models
@@ -20,7 +20,6 @@ namespace NeoApp.API.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Certifique-se de que a configuração do banco de dados está sendo fornecida ao contexto.
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Data Source=(local);Initial Catalog=ControleConsulta;Integrated Security=True;Encrypt=False");
@@ -41,27 +40,18 @@ namespace NeoApp.API.Models
                     .HasForeignKey(d => d.IdPaciente)
                     .HasConstraintName("FK_Consulta_Paciente");
 
-                // Adicione validações para garantir que as chaves estrangeiras não sejam nulas
                 entity.Property(e => e.IdMedico).IsRequired();
                 entity.Property(e => e.IdPaciente).IsRequired();
-
-                // Adicione outras validações conforme necessário
             });
 
             modelBuilder.Entity<Medico>(entity =>
             {
-                // Adicione validações para garantir que campos obrigatórios não sejam nulos
                 entity.Property(e => e.NomeMedico).IsRequired();
-
-                // Adicione outras validações conforme necessário
             });
 
             modelBuilder.Entity<Paciente>(entity =>
             {
-                // Adicione validações para garantir que campos obrigatórios não sejam nulos
                 entity.Property(e => e.NomePaciente).IsRequired();
-
-                // Adicione outras validações conforme necessário
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -6,7 +6,7 @@ using NeoApp.API.Repositories.Interfaces;
 namespace NeoApp.API.Controllers
 {
     [Authorize(Roles = "Medico")]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MedicoController : ControllerBase
     {
@@ -41,7 +41,6 @@ namespace NeoApp.API.Controllers
                     return BadRequest("O ID do médico deve ser maior que zero.");
                 }
 
-                // Verificar se o médico existe antes de atualizar
                 if (!await _medicoRepositorie.VerificarExistenciaMedico(id))
                 {
                     return NotFound("Médico não encontrado.");
@@ -72,8 +71,6 @@ namespace NeoApp.API.Controllers
                     return BadRequest("Os dados do médico não podem ser nulos.");
                 }
 
-                // Adicione outras regras de validação conforme necessário.
-
                 Medico medico = await _medicoRepositorie.AdicionarMedico(medicoModel);
                 return Ok(medico);
             }
@@ -91,13 +88,11 @@ namespace NeoApp.API.Controllers
                 return BadRequest("ID na URL não corresponde ao ID no objeto Médico.");
             }
 
-            // Verificar se o médico existe antes de atualizar
             if (!await _medicoRepositorie.VerificarExistenciaMedico(id))
             {
                 return NotFound("Médico não encontrado.");
             }
 
-            // Continue com a lógica de atualização
             Medico medico = await _medicoRepositorie.AtualizarMedico(medicoModel, id);
             return Ok(medico);
         }
@@ -112,7 +107,6 @@ namespace NeoApp.API.Controllers
                     return BadRequest("O ID do médico deve ser maior que zero.");
                 }
 
-                // Verificar se o médico existe antes de atualizar
                 if (!await _medicoRepositorie.VerificarExistenciaMedico(id))
                 {
                     return NotFound("Médico não encontrado.");
