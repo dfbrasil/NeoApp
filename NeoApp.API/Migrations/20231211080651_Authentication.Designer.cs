@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeoApp.API.Models;
 
@@ -11,9 +12,11 @@ using NeoApp.API.Models;
 namespace NeoApp.API.Migrations
 {
     [DbContext(typeof(ControleConsultaContext))]
-    partial class ControleConsultaContextModelSnapshot : ModelSnapshot
+    [Migration("20231211080651_Authentication")]
+    partial class Authentication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NeoApp.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae94c2b9184ce95c6bbb93ce14f590ea0045dede")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("NeoApp.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NeoApp.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
