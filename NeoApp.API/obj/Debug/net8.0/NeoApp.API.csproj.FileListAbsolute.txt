@@ -2,6 +2,9 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\appsettin
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\appsettings.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\efpt.config.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\runtimeconfig.json
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.exe
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.deps.json
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.runtimeconfig.json
@@ -9,7 +12,11 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.AP
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.pdb
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Dapper.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -34,6 +41,8 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -51,6 +60,10 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\System.Ru
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.abstractions.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.assert.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.core.dll
+C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.execution.dotnet.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -137,21 +150,3 @@ C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\refint\Ne
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\NeoApp.API.pdb
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\NeoApp.API.genruntimeconfig.cache
 C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\obj\Debug\net8.0\ref\NeoApp.API.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
-<<<<<<< HEAD
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\NeoApp.API.staticwebassets.runtime.json
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Dapper.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.abstractions.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.assert.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.core.dll
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\xunit.execution.dotnet.dll
-=======
-C:\Users\Daniel Brasil\source\repos\NeoApp\NeoApp.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
->>>>>>> 68d51bbed9813d4d01aa20165e02d157696a1a10
