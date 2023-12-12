@@ -6,7 +6,7 @@ using NeoApp.API.Repositories.Interfaces;
 
 namespace NeoApp.API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Paciente")]
     [Route("api/[controller]")]
     [ApiController]
     public class PacienteController : ControllerBase

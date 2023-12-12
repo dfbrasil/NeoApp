@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeoApp.API.Models;
 using NeoApp.API.Repositories.Interfaces;
 
 namespace NeoApp.API.Controllers
 {
+    [Authorize(Roles = "Medico")]
     [Route("api/[controller]")]
     [ApiController]
     public class MedicoController : ControllerBase
